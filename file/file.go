@@ -76,10 +76,6 @@ func copy(src string, dest string) {
 	info, err := os.Lstat(src)
 	output.OnError(err, "Error getting information about source")
 
-	if info.Mode()&os.ModeSymlink != 0 {
-		return // Completely ignore symlinks.
-	}
-
 	if info.IsDir() {
 		copyDirectory(src, dest)
 	} else {

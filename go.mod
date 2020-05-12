@@ -1,4 +1,4 @@
-module github.com/nomad-software/vend
+module github.com/chizhg/vend
 
 go 1.14
 

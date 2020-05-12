@@ -7,7 +7,7 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"github.com/nomad-software/vend/output"
+	"github.com/chizhg/vend/output"
 )
 
 // UpdateModule makes sure the module is updated ready to vendor the

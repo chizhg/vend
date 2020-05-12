@@ -8,8 +8,8 @@ import (
 	"path"
 	"path/filepath"
 
-	"github.com/nomad-software/vend/cli"
-	"github.com/nomad-software/vend/output"
+	"github.com/chizhg/vend/cli"
+	"github.com/chizhg/vend/output"
 )
 
 // CopyPkgDependencies copies package level dependencies.

@@ -8,6 +8,8 @@ import (
 	"path"
 	"path/filepath"
 
+	copytool "github.com/otiai10/copy"
+
 	"github.com/chizhg/vend/cli"
 	"github.com/chizhg/vend/output"
 )
@@ -21,7 +23,8 @@ dep:
 			if r.Path == d.Path && r.Version == d.Version {
 				fmt.Fprintf(output.Stdout, "vend: copying %s (%s)\n", d.Path, d.Version)
 				dest := path.Join(vendorDir(), d.Path)
-				copy(d.Dir, dest)
+				// copy(d.Dir, dest)
+				copytool.Copy(d.Dir, dest)
 
 				continue dep
 			}
@@ -75,6 +78,10 @@ func deleteVendorDir() {
 func copy(src string, dest string) {
 	info, err := os.Lstat(src)
 	output.OnError(err, "Error getting information about source")
+
+	if info.Mode()&os.ModeSymlink != 0 {
+		return // Completely ignore symlinks.
+	}
 
 	if info.IsDir() {
 		copyDirectory(src, dest)
